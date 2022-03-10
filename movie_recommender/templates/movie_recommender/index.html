@@ -1,0 +1,78 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'movie_recommender/index.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Movie Recommender System</title>
+  </head>
+  <body>
+    <div class="form-control">
+      <h1>Movie Recommender System</h1>
+      <form method="GET">
+        <label for="movie">Choose a movie</label>
+        <div class="movie-selector">
+          <select type="text" name="selectedMovie" id="selectedMovie">
+            {% for movie in movies_list %}
+            <option value="{{movie}}">{{movie}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" id="recommend">Recommend</button>
+      </form>
+      {% if recommended_movies is not None %}
+      <div class="recommended_movies">
+        <div>
+          <h2>Movies related to {{ selectedMovie }}</h2>
+        </div>
+        <div class="movie_list">
+          <div class="movies">
+            <h4>{{ recommended_movies.0 }}</h4>
+            <img
+              src="{{ recommended_movie_posters.0 }}"
+              alt="recommended_movie_posters.0"
+            />
+          </div>
+          <div class="movies">
+            <h4>{{ recommended_movies.1 }}</h4>
+            <img
+              src="{{ recommended_movie_posters.1 }}"
+              alt="recommended_movie_posters.1"
+            />
+          </div>
+          <div class="movies">
+            <h4>{{ recommended_movies.2 }}</h4>
+            <img
+              src="{{ recommended_movie_posters.2 }}"
+              alt="recommended_movie_posters.2"
+            />
+          </div>
+          <div class="movies">
+            <h4>{{ recommended_movies.3 }}</h4>
+            <img
+              src="{{ recommended_movie_posters.3 }}"
+              alt="recommended_movie_posters.3"
+            />
+          </div>
+          <div class="movies">
+            <h4>{{ recommended_movies.4 }}</h4>
+            <img
+              src="{{ recommended_movie_posters.4 }}"
+              alt="recommended_movie_posters.4"
+            />
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
